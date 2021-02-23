@@ -4,25 +4,25 @@ import geopandas as gpd
 import pyproj
 import plotly.graph_objs as go
 
-# reading in the leases shapefile
-polygon = gpd.read_file(r"C:\Users\wagneaj\Desktop\MapLayers\mapLayers\CityBoundaries.shp")
+# reading in the polygon shapefile
+polygon = gpd.read_file(r"Downloads\CityBoundaries.shp")
 
 # project geopandas dataframe
 map_df = polygon
 map_df.to_crs(pyproj.CRS.from_epsg(4326), inplace=True)
 
-# reading in the wells shapefile
-points = gpd.read_file(r"C:\Users\wagneaj\Desktop\MapLayers\mapLayers\USA_Major_Cities.shp")
+# reading in the points shapefile
+points = gpd.read_file(r"Downloads\USA_Major_Cities.shp")
 
 # project geopandas dataframe
 points.to_crs(pyproj.CRS.from_epsg(4326), inplace=True)
 
-# define lat, long for wells
+# define lat, long for ponints
 Lat = points['Lat']
 Long = points['Long']
 
 # leases to geojson
-path = r"C:\Users\wagneaj\Desktop\Scratch\Streamlit\Shapefiles\geojson.json"
+path = r"C:\Users\project\geojson.json"
 
 map_df.to_file(path, driver = "GeoJSON")
 with open(path) as geofile:
@@ -35,7 +35,7 @@ for feature in j_file["features"]:
     i += 1
     
 # mapbox token
-mapboxt = 'pk.eyJ1Ijoid2FnbmVyYWp3IiwiYSI6ImNra2lpN242ZDA0d3gyeHV6YW8xYXRwa2oifQ.b25cbmKgNGefJa2xqkjdLA'
+mapboxt = 'MapBox Token'
 
 # define layers and plot map
 choro = go.Choroplethmapbox(z=map_df['STFIPS'], locations = map_df.index, colorscale = 'Viridis', geojson = j_file, text = map_df['NAME'], marker_line_width=0.1)
