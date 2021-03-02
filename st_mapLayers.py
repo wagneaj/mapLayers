@@ -45,7 +45,7 @@ choro = go.Choroplethmapbox(z=map_df['STFIPS'], locations = map_df.index, colors
 scatt = go.Scattermapbox(lat=Lat,lon=Long,mode='markers+text',below='False', marker=dict( size=12, color ='rgb(56, 44, 100)'))
      # Your scatter data here
 
-layout = go.Layout(title_text ='Wells & Leases', title_x =0.5, width=950, height=700,mapbox = dict(center= dict(lat=37, lon=-95),accesstoken= mapboxt, zoom=4,style="stamen-terrain"))
+layout = go.Layout(title_text ='USA Cities', title_x =0.5, width=950, height=700,mapbox = dict(center= dict(lat=37, lon=-95),accesstoken= mapboxt, zoom=4,style="stamen-terrain"))
     
 
 # streamlit multiselect widget
